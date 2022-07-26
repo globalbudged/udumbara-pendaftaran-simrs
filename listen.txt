@@ -1,0 +1,26 @@
+This for LARAVEL 8.
+
+1. For Auth 
+=======================================================
+** INSTALL FORTIFY **
+=======================================================
+cmd:
+
+    composer require laravel/fortify
+
+    php artisan vendor:publish --provider="Laravel\Fortify\FortifyServiceProvider"
+
+    php artisan migrate
+
+to app.config ->load
+
+App\Providers\FortifyServiceProvider
+
+change views on app/config/fortify -> views to false
+
+2. create controller 
+=======================================================
+cmd :
+    php artisan make:controller Api/v1/UserController --api
+=======================================================
+
