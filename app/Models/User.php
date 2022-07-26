@@ -41,4 +41,17 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    protected $appends = [
+        'created_ago', 'updated_ago'
+    ];
+
+    public function getCreatedAgoAttribute()
+    {
+        return $this->created_at->diffForHumans();
+    }
+    public function getUpdatedAgoAttribute()
+    {
+        return $this->updated_at->diffForHumans();
+    }
 }
