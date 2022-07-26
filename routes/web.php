@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PercobaanController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,3 +20,5 @@ Route::get('/', function () {
 Route::get('/app', function () {
     return view('app');
 });
+
+Route::get('/coba', [PercobaanController::class, 'index']);
