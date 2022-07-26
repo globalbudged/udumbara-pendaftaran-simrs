@@ -3,6 +3,7 @@
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -34,8 +35,29 @@ class Handler extends ExceptionHandler
      */
     public function register()
     {
-        $this->reportable(function (Throwable $e) {
-            //
+        // $this->reportable(function (Throwable $e) {
+        //     // dd('mmmm');
+        // });
+
+        // $this->renderable(function (NotFoundHttpException $e, $request) {
+        //     // dd($e);
+        //     if ($request->is('api/*')) {
+        //         return response()->json('error');
+        //     };
+        // });
+
+
+        $this->renderable(function (Throwable $e, $request) {
+            /** 
+             * INI JIKA 404 data tidak ditemukan
+             */
+            if ($e instanceof NotFoundHttpException) {
+                if ($request->is('api/*')) {
+                    return response()->json([
+                        'message' => 'Data tidak ditemukan'
+                    ], 404);
+                }
+            }
         });
     }
 }

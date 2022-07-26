@@ -21,6 +21,6 @@ change views on app/config/fortify -> views to false
 2. create controller 
 =======================================================
 cmd :
-    php artisan make:controller Api/v1/UserController --api 
+    php artisan make:controller Api/v1/UserController --api
 =======================================================
 
