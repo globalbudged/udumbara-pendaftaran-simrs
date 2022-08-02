@@ -7,5 +7,7 @@ use Illuminate\Http\Request;
 
 class PasienController extends Controller
 {
-    //
+    public function index()
+    {
+    }
 }

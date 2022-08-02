@@ -20,6 +20,12 @@ class PercobaanController extends Controller
             echo '\'' . $key . '\' => $this->' . $key . ',<br>';
         }
         echo '<br>';
+        echo '====================================== INI UNTUK QUASAR ============================';
+        echo '<br>';
+        foreach ($data as $key) {
+            echo $key . ': "", <br>';
+        }
+        echo '<br>';
         // return new JsonResponse($data);
     }
 }

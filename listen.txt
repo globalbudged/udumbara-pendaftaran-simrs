@@ -1,24 +1,38 @@
 This for LARAVEL 8.
 
-1. For Auth 
+1. For Auth
 =======================================================
-** INSTALL FORTIFY **
+** INSTALL JWTAUTH **
 =======================================================
 cmd:
 
-    composer require laravel/fortify
+    composer require tymon/jwt-auth
 
-    php artisan vendor:publish --provider="Laravel\Fortify\FortifyServiceProvider"
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-    php artisan migrate
+Tambahkan penyedia layanan ke providersarray dalam config/app.phpfile konfigurasi sebagai berikut:
+'providers' => [
 
-to app.config ->load
+    ...
 
-App\Providers\FortifyServiceProvider
+    Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
+]
 
-change views on app/config/fortify -> views to false
+Publish the config
+Run the following command to publish the package config file:
+php artisan vendor:publish --provider="Tymon\JWTAuth\Providers\LaravelServiceProvider"
 
-2. create controller 
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Generate secret key
+cmd:
+    php artisan jwt:secret
+
+This will update your .env file with something like JWT_SECRET=foobar
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2. create controller
 =======================================================
 cmd :
     php artisan make:controller Api/v1/UserController --api
