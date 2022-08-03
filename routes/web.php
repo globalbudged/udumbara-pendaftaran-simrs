@@ -1,6 +1,9 @@
 <?php
 
+use App\Events\ChatMessageEvent;
+use App\Events\PlaygroundEvent;
 use App\Http\Controllers\PercobaanController;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,5 +23,17 @@ Route::get('/', function () {
 Route::get('/app', function () {
     return view('app');
 });
+Route::get('/playground', function () {
+    event(new PlaygroundEvent());
+    return null;
+});
+Route::get('/ws', function () {
+    return view('websocket');
+});
 
 Route::get('/coba', [PercobaanController::class, 'index']);
+
+Route::post('/chat-message', function (Request $request) {
+    event(new ChatMessageEvent($request->message));
+    return null;
+});
